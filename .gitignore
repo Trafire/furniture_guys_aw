@@ -1,4 +1,5 @@
 /app.yaml
-/secrets.py
+/secrets_settings.py
 /.coverage
 /.env
+/notes

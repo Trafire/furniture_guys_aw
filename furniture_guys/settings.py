@@ -23,14 +23,14 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 if os.getenv("GAE_INSTANCE"):  # checks if production environment
     DEBUG = False
 else:
-    import secrets
+    import secrets_settings
 
     DEBUG = True
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '(e0c=b$9xkch67c*1+v3ny_b^l_f+y738_(vn!4s!qos@8urk4'
 
-ALLOWED_HOSTS = ['(127.0.0.1', 'localhost', 'afg-jobs.appspot.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'afg-jobs.appspot.com']
 
 # Application definition
 
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 
 ]
 
