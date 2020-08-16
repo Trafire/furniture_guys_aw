@@ -3,7 +3,7 @@ import {render} from "react-dom";
 import {Header} from "./Header";
 import {Footer} from "./Footer";
 import {Main} from "./Main";
-import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {HashRouter as Router} from "react-router-dom";
 import {ThemeProvider} from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import theme from './theme'
