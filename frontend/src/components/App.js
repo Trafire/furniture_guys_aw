@@ -1,42 +1,29 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
+import React, {Component} from "react";
+import {render} from "react-dom";
+import {Header} from "./Header";
+import {Footer} from "./Footer";
+import {Main} from "./Main";
+import {BrowserRouter as Router, Route, Link} from "react-router-dom";
+import {ThemeProvider} from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import theme from './theme'
+
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      loaded: false,
-      placeholder: "Loading"
-    };
-  }
-
-  componentDidMount() {
-    fetch("api/jobs")
-      .then(response => {
-        if (response.status > 400) {
-          return this.setState(() => {
-            return { placeholder: "Something went wrong!" };
-          });
-        }
-        return response.json();
-      })
-      .then(data => {
-        this.setState(() => {
-          return {
-            data,
-            loaded: true
-          };
-        });
-      });
-  }
 
   render() {
     return (
-      <ul>
-        test
-        {this.state.placeholder}
-      </ul>
+      <div>
+
+        <Router>
+          <ThemeProvider theme={theme}>
+            <CssBaseline/>
+            <Header/>
+            <Main/>
+            <Footer/>
+          </ThemeProvider>
+        </Router>
+      </div>
     );
   }
 }
@@ -44,4 +31,4 @@ class App extends Component {
 export default App;
 
 const container = document.getElementById("app");
-render(<App />, container);
+render(<App/>, container);
