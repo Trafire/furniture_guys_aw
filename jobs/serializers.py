@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Employers, JobTypes, Postings
+from .models import Employers, JobTypes, Postings, Candidates, Applications
 from django.contrib.auth.models import User
 
 
@@ -27,3 +27,19 @@ class PostingsSerializer(serializers.ModelSerializer):
         model = Postings
         job_types = JobTypesSerializer()
         fields = ('id', 'employer', 'active', 'title', 'description', 'job_types')
+
+
+class CandidatesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Candidates
+        fields = ('id', 'name', 'email', 'resume')
+
+
+
+class ApplicationsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Applications
+        candidate =  CandidatesSerializer()
+        posting = PostingsSerializer()
+        fields = ('id', 'candidate', 'posting', 'application_time')
+

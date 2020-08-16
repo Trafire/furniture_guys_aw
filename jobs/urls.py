@@ -8,8 +8,10 @@ router = DefaultRouter()
 router.register(r'employers', views.EmployersViewSet)
 router.register(r'users', views.UserViewSet)
 router.register(r'postings', views.PostingViewSet)
+router.register(r'applications', views.ApplicationViewSet)
+router.register(r'candidates', views.CandidateViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('', views.index),
+
 ]
