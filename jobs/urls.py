@@ -7,6 +7,7 @@ router = DefaultRouter()
 
 router.register(r'employers', views.EmployersViewSet)
 router.register(r'users', views.UserViewSet)
+router.register(r'postings', views.PostingViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
