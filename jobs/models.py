@@ -25,6 +25,11 @@ class Postings(models.Model):
     description = models.TextField(null=False)
     job_types = models.ForeignKey(JobTypes, on_delete=models.CASCADE)
     posting_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.description
+    def __repr__(self):
+        return self.description
     class meta:
         ordering = ['-id']
 

@@ -169,6 +169,7 @@ export const JobPostings = () => {
   const [isLoading, setIsLoading] = useState(true);
   const classes = useStyles();
 
+
   useEffect(() => {
     candidatesServices.getPostings(page).then(response => {
       setPostings(response);
@@ -189,6 +190,12 @@ export const JobPostings = () => {
   return (
     <List className={classes.root}>
       {listItems}
+      <span onClick={() => {
+        setPage(page - 1)
+      }}>Previous Page</span>
+      <span onClick={() => {
+        setPage(page + 1)
+      }}>Next Page</span>
     </List>
   );
 }

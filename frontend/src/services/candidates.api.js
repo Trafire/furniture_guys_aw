@@ -6,15 +6,14 @@ export const candidatesServices = {
 
 
 function addApplication(data) {
+  console.log(data);
   const requestOptions = {
-    headers: {'Content-Type': 'application/json',},
-    method: 'POST',
-    mode: 'no-cors',
-    body: JSON.stringify(data),
+    method: 'GET',
   };
-  return fetch(`/api/applications/`, requestOptions).then(handleResponse);
+  return fetch(`/api/applications/create/${data['candidate']}/${data['posting']}/`, requestOptions).then(handleResponse);
 
 }
+
 function getPostings(page) {
   const requestOptions = {
     method: 'GET',
@@ -23,13 +22,14 @@ function getPostings(page) {
 }
 
 function createCandidate(data) {
+  console.log(data);
   const requestOptions = {
     headers: {'Content-Type': 'application/json',},
     method: 'POST',
     mode: 'no-cors',
     body: JSON.stringify(data),
   };
-  return fetch(`/api/candidates/`, requestOptions).then(handleResponse);
+  return fetch(`/api/candidate/create/`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

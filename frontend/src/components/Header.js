@@ -37,7 +37,7 @@ export const Header = () => {
       <AppBar className={classes.bar} position="static">
         <NavLinks text="Home" route="/"/>
         <NavLinks text="Candidates" route="/candidates"/>
-        <NavLinks text="Employer" route="/employer"/>
+        <NavLinks text="Employer" route="/employers"/>
         <NavLinks text="Statistics" route="/statistics"/>
       </AppBar>
     </div>
