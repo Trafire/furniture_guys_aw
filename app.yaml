@@ -1,0 +1,42 @@
+runtime: python
+
+# the PROJECT-DIRECTORY is the one with settings.py and wsgi.py
+entrypoint: gunicorn -b :$PORT furniture_guys.wsgi # specific to a GUnicorn HTTP server deployment
+env: flex # for Google Cloud Flexible App Engine
+
+# any environment variables you want to pass to your application.
+# accessible through os.environ['VARIABLE_NAME']
+env_variables:
+  # the secret key used for the Django app (from PROJECT-DIRECTORY/settings.py)
+  SECRET_KEY: '(e0c=b$9xkch67c*1+v3ny_b^l_f+y738_(vn!4s!qos@8urk4'
+  DEBUG: 'False' # always False for deployment
+
+  # everything after /cloudsql/ can be found by entering >> gcloud sql instances describe DATABASE-NAME << in your Terminal
+  # the DATABASE-NAME is the name you gave your project's PostgreSQL database
+  # the second line from the describe output called connectionName can be copied and pasted after /cloudsql/
+  DB_HOST: '/cloudsql/afg-jobs:us-central1:afg-jobs-db'
+  DB_PORT: '5432'
+  DB_NAME: 'afg-jobs-db'
+  DB_USER: 'afg_antoine'
+  DB_PASSWORD: "gbuuyxMwFroM687K"
+
+  STATIC_URL: 'https://console.cloud.google.com/storage/browser/afg-jobs-storage/static' # this is the url that you sync static files to
+
+
+handlers:
+  # This configures Google App Engine to serve the files in the app's static
+  # directory.
+  - url: /static
+    static_dir: static/
+  # This handler routes all requests not caught above to your main app. It is
+  # required when static routes are defined, but can be omitted (along with
+  # the entire handlers section) when there are no static files defined.
+  - url: /.*
+    script: auto
+
+beta_settings:
+  # from command >> gcloud sql instances describe fm-crm-db <<
+  cloud_sql_instances: afg-jobs:us-central1:afg-jobs-db
+
+runtime_config:
+  python_version: 3 # enter your Python version BASE ONLY here. Enter 2 for 2.7.9 or 3 for 3.6.4
