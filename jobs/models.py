@@ -24,6 +24,9 @@ class Postings(models.Model):
     title = models.CharField(null=False, max_length=255)
     description = models.TextField(null=False)
     job_types = models.ForeignKey(JobTypes, on_delete=models.CASCADE)
+    posting_time = models.DateTimeField(auto_now_add=True)
+    class meta:
+        ordering = ['-id']
 
 
 class Candidates(models.Model):

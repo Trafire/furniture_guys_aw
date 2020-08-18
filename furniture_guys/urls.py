@@ -20,6 +20,6 @@ import jobs
 
 urlpatterns = [
     path('admin', admin.site.urls),
-    path('jobs/', include('jobs.urls')),
+    path('api/', include('jobs.urls')),
     path('', include('frontend.urls')),
 ]
